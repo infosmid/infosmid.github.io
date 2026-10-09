@@ -55,8 +55,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <a href="./" class="brand" aria-label="Infosmid (Pty) Ltd home">
-        <img src="images/infosmid-icon-light.svg" alt="Infosmid logo" class="brand-logo brand-logo-light" width="36" height="36">
-        <img src="images/infosmid-icon-dark.svg" alt="Infosmid logo" class="brand-logo brand-logo-dark" width="36" height="36">
+        <img id="header-icon" src="images/infosmid-icon-light.svg" alt="Infosmid logo" class="brand-logo" width="36" height="36">
         <div class="brand-text">
           <span class="brand-title">Infosmid</span>
           <span class="brand-badge">(Pty) Ltd</span>
@@ -550,8 +549,8 @@
       <div class="footer-top">
         <div class="footer-brand">
           <div style="display: flex; align-items: center; gap: 0.6rem;">
-            <img src="images/infosmid-icon-dark.svg" alt="Infosmid logo" width="28" height="28" style="display: block;">
-            <span class="brand-title" style="font-size: 1.15rem; font-weight: 700; color: #FAF9F5;">Infosmid (Pty) Ltd</span>
+            <img id="footer-icon" src="images/infosmid-icon-light.svg" alt="Infosmid logo" class="brand-logo" width="28" height="28">
+            <span class="brand-title" style="font-size: 1.15rem; font-weight: 700;">Infosmid (Pty) Ltd</span>
           </div>
           <p>
             Software architecture, systems consulting, and modern JVM engineering services delivering enduring operational utility.
@@ -592,6 +591,8 @@
     (function () {
       var toggleBtn = document.getElementById('theme-toggle');
       var icon = document.getElementById('theme-icon');
+      var headerIcon = document.getElementById('header-icon');
+      var footerIcon = document.getElementById('footer-icon');
       if (!toggleBtn || !icon) return;
 
       var sunSvg = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
@@ -601,6 +602,13 @@
         var isDark = theme === 'dark';
         icon.innerHTML = isDark ? sunSvg : moonSvg;
         var label = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+        var iconSrc = isDark ? 'images/infosmid-icon-dark.svg' : 'images/infosmid-icon-light.svg';
+        if (headerIcon) {
+          headerIcon.src = iconSrc;
+        }
+        if (footerIcon) {
+          footerIcon.src = iconSrc;
+        }
         toggleBtn.setAttribute('aria-label', label);
         toggleBtn.setAttribute('title', label);
       }
